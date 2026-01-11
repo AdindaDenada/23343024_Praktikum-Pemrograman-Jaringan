@@ -1,35 +1,46 @@
-# Jobsheet 1 - Pengantar Node.js
+# Jobsheet 1 - Introduksi Node.js
 
-1. **Pemrograman Jaringan**  
-   Pemrograman jaringan adalah bidang dalam ilmu komputer yang fokus pada pengembangan aplikasi yang memungkinkan komunikasi, pertukaran data, dan interaksi antar perangkat melalui jaringan, baik **LAN (Local Area Network)** maupun **WAN (Wide Area Network)**.
+### 1. Definisi Pemrograman Jaringan
 
-2. **Konsep Utama dalam Pemrograman Jaringan**  
-   - **Client-Server Architecture** → Klien mengirim permintaan, server merespons.  
-   - **Protokol Jaringan** → Aturan komunikasi (contoh: HTTP, SMTP).  
-   - **Socket** → Titik akses aplikasi untuk berkomunikasi melalui jaringan (TCP/UDP).  
-   - **Sinkron & Asinkron** → Sinkron menunggu respon, Asinkron tidak menunggu (lebih efisien).  
-   - **Pemrograman Web** → Aplikasi berbasis server, diakses lewat browser.  
-   - **Pemrograman Mobile** → Aplikasi mobile umumnya menggunakan REST API untuk komunikasi dengan server.
+**Pemrograman jaringan** merupakan sub-disiplin ilmu komputer yang berfokus pada pembuatan instruksi perangkat lunak agar komputer dapat saling terhubung, berinteraksi, dan bertukar data melalui infrastruktur jaringan, baik dalam skala lokal (**LAN**) maupun luas (**WAN**).
 
-3. **Peran Node.js dalam Pemrograman Jaringan**  
-   Node.js adalah **runtime JavaScript di sisi server** yang mendukung pemrograman **asinkron & event-driven**, sehingga:  
-   - Responsif dan efisien dalam mengelola I/O.  
-   - Cocok untuk aplikasi berskala besar dengan banyak koneksi.  
-   - Memiliki **event loop** untuk mengelola proses asinkron tanpa blocking.  
+### 2. Fundamen Pemrograman Jaringan
 
-4. **Keunggulan Node.js**  
-   - **Efisiensi Skalabilitas** → Mampu menangani banyak koneksi dengan resource minimal.  
-   - **Responsivitas Tinggi** → Tetap cepat meski operasi I/O lambat.  
-   - **Cross-Platform** → Bisa dijalankan di Windows, Linux, dan macOS.  
-   - **Integrasi JS Client-Server** → Satu bahasa untuk frontend & backend.  
-   - **Ekosistem NPM** → Tersedia ribuan modul siap pakai.  
+* **Arsitektur Client-Server** → Pola komunikasi di mana satu pihak bertindak sebagai peminta layanan (klien) dan pihak lain sebagai penyedia layanan (server).
+
+* **Protokol Jaringan** → Sekumpulan aturan standar yang mengatur jalannya komunikasi data (misalnya: HTTP, SMTP).
+* **Socket** → Mekanisme ujung tombak (*endpoint*) yang digunakan aplikasi untuk mengirim atau menerima data melalui jaringan (TCP/UDP).
+* **Sinkron & Asinkron** → Metode eksekusi tugas; sinkron berjalan berurutan (menunggu), sedangkan asinkron memungkinkan proses lain berjalan tanpa harus menunggu tugas sebelumnya selesai.
+* **Pemrograman Web** → Pengembangan aplikasi yang dijalankan di server dan diakses oleh pengguna melalui peramban.
+* **Pemrograman Mobile** → Pengembangan aplikasi seluler yang biasanya memanfaatkan REST API untuk berkomunikasi dengan basis data di server.
+
+### 3. Kontribusi Node.js dalam Jaringan
+
+Node.js bertindak sebagai **runtime JavaScript di sisi server** yang menerapkan model **asynchronous & event-driven**. Hal ini memberikan beberapa keuntungan:
+
+* Efisiensi tinggi dalam menangani operasi input/output (I/O).
+* Kemampuan mengelola ribuan koneksi secara simultan dengan performa stabil.
+* Pemanfaatan **event loop** untuk mengeksekusi proses tanpa memblokir antrean tugas lainnya (*non-blocking*).
+
+### 4. Keunggulan Utama Node.js
+
+* **Skalabilitas Optimal** → Sangat handal dalam menangani beban kerja besar dengan konsumsi sumber daya yang minim.
+* **Kecepatan Respons** → Menjamin performa tetap gegas meskipun menangani banyak permintaan I/O yang berat.
+* **Multi-Platform** → Kompatibel untuk dijalankan pada berbagai sistem operasi seperti Windows, macOS, dan Linux.
+* **Unifikasi Bahasa (Full-stack JS)** → Memungkinkan penggunaan satu bahasa pemrograman (JavaScript) untuk pengembangan sisi klien maupun server.
+* **Ekosistem NPM** → Akses ke jutaan pustaka (*library*) siap pakai untuk mempercepat proses pengembangan.
+
+---
 
 ## Kesimpulan Latihan B
-- Latihan ini menunjukkan cara membuat file JavaScript sederhana (`hello.js`) lalu menjalankannya menggunakan **Node.js**.  
-- Node.js mampu mengeksekusi kode JavaScript langsung dari terminal tanpa memerlukan browser.  
-- Hal ini membuktikan bahwa **Node.js adalah runtime environment** yang mengeksekusi JavaScript di sisi server.  
+
+* Latihan ini mendemonstrasikan proses pembuatan dan eksekusi skrip JavaScript sederhana (`hello.js`) melalui terminal.
+* Hasilnya mengonfirmasi bahwa **Node.js merupakan runtime environment** yang memungkinkan JavaScript dijalankan secara mandiri di tingkat sistem/server tanpa ketergantungan pada browser.
 
 ## Kesimpulan Latihan C
-- Latihan ini menunjukkan untuk membuat file `hello-world.js` yang menjalankan **server HTTP sederhana** dengan Node.js.  
-- Setelah dijalankan, server dapat diakses melalui browser pada alamat `http://127.0.0.1:3000/`.  
-- Latihan ini menjadi dasar penting dalam **pemrograman jaringan**, karena Node.js menyediakan modul bawaan seperti `http` untuk membuat server dengan cepat dan efisien.  
+
+* Latihan ini mempraktikkan cara membangun **server HTTP fungsional** sederhana menggunakan file `hello-world.js`.
+* Server yang telah dibuat dapat diakses secara lokal melalui alamat `http://127.0.0.1:3000/`.
+* Poin pentingnya adalah Node.js mempermudah pemrograman jaringan melalui modul bawaan seperti `http`, yang memungkinkan pengembang membuat server secara instan dan efisien.
+
+---
