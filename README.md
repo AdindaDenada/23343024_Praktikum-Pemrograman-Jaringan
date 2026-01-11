@@ -1,7 +1,5 @@
 # 23343024_Adinda Denada_Praktikum-Pemrograman-Jaringan
 
-# Pemrograman Berbasis Jaringan – Node.js
-
 Repositori ini berisi kumpulan **Jobsheet praktikum Node.js** yang mencakup pembelajaran mulai dari konsep dasar hingga pembuatan web server dan integrasi API.  
 Setiap folder berisi latihan mandiri dan file `README.md` yang menjelaskan materi, hasil pembelajaran dari masing-masing jobsheet disimpan dalam folder screenshoot atau ss.
 
