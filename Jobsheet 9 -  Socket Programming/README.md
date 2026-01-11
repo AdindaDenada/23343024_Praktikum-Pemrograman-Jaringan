@@ -1,168 +1,85 @@
-# Jobsheet 9 - Socket Programming
-# Latihan
+# Jobsheet 9 – Pemrograman Jaringan: Socket Programming
 
-Dari latihan pada jobsheet ini, saya memperoleh pengalaman langsung dalam membangun aplikasi komunikasi real-time menggunakan Socket Programming berbasis WebSocket dengan Socket.IO. Saya mempelajari bagaimana server dan client dapat saling terhubung, sehingga memungkinkan pertukaran data dua arah secara langsung tanpa harus melakukan request berulang seperti pada HTTP biasa.
+### Latihan & Pengalaman Praktis
 
-Melalui implementasi aplikasi ruang obrolan (chat room), saya memahami penggunaan event socket.on dan socket.emit untuk menangani komunikasi berbasis peristiwa (event-based communication), pengelolaan pengguna dalam suatu room, serta mekanisme broadcast pesan ke seluruh client yang berada dalam room yang sama. Selain itu, saya juga mempelajari penggunaan namespace dan room pada Socket.IO untuk memisahkan komunikasi antar kelompok pengguna.
+Melalui rangkaian praktikum ini, saya telah berhasil mengimplementasikan sistem komunikasi **real-time** menggunakan protokol **WebSocket** melalui library **Socket.IO**. Saya mendalami mekanisme pertukaran data dua arah (*bidirectional*) yang memungkinkan server dan klien berinteraksi secara instan tanpa ketergantungan pada siklus permintaan (*request*) HTTP konvensional.
 
-# Tugas
-
-## 1. Perbandingan Implementasi `socket.on` pada Sisi Server dan Client
-
-Tabel berikut menunjukkan perbedaan penerapan metode `socket.on` antara bagian server dan client dalam aplikasi chat.
-
-| Kriteria                | Server (`src/index.js`)                                                  | Client (`public/js/chat.js`)                          |
-| :---------------------- | :----------------------------------------------------------------------- | :---------------------------------------------------- |
-| **Platform**            | Node.js                                                                  | Browser                                               |
-| **Fungsi Utama**        | Mengelola event dari client, mengatur pengguna, mendistribusikan pesan. | Menerima event dari server, memperbarui antarmuka.    |
-| **Event yang Ditangani**| `join`, `kirimPesan`, `kirimLokasi`, `disconnect`                        | `pesan`, `locationMessage`, `roomData`                |
-| **Peran**               | Memproses input client dan mengeksekusi logika bisnis.                   | Memproses data server dan merender ke tampilan.       |
-| **Implementasi**        | `socket.on("kirimPesan", (pesan, callback) => {...})`                    | `socket.on("pesan", (message) => {...})`              |
-| **Operasi**             | Validasi input, broadcasting, manajemen user, update room.               | Rendering template, pembaruan sidebar, auto-scroll.   |
-| **Jenis Data**          | Data mentah dari pengguna.                                               | Data terformat dari server.                           |
-| **Hasil**               | Mengirim event ke semua client di room yang sama.                        | Memodifikasi DOM, menampilkan pesan dan lokasi.       |
+Fokus latihan ini meliputi pengembangan aplikasi ruang obrolan (*chat room*) dengan memanfaatkan metode **event-based communication**. Saya mempelajari penggunaan `socket.on` dan `socket.emit` untuk manajemen peristiwa, pengaturan pengguna dalam grup spesifik (*rooms*), serta teknik **broadcasting** pesan agar dapat diterima oleh seluruh klien yang terhubung secara simultan.
 
 ---
 
-## 2. Investigasi Alur Data Melalui Console Browser
+### Tugas Analisis & Implementasi
 
-Berikut hasil analisis tampilan console saat aplikasi chat berjalan.
+#### 1. Komparasi Implementasi `socket.on` (Server vs Client)
 
-| Output Console                                                         | Penyebab                                                                                     | Bagian Kode Terkait                                                                       |
-| :--------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
-| **Objek Pesan Admin**<br>`{username: "Admin", text: "Selamat datang!", ...}` | Client menerima event pesan sambutan dari server dan menampilkannya di console.              | `socket.on("pesan", (message) => { console.log(message); })`                              |
-| **Objek Pesan Pengguna**<br>`{username: "randi", text: "test", ...}`  | Server mendistribusikan pesan ke semua client dalam room, kemudian client mencetaknya.       | `socket.on("pesan", (message) => { console.log(message); })`                              |
-| **Konfirmasi**<br>`"Pesan berhasil dikirim"`                           | Callback dari event `kirimPesan` dijalankan setelah server memproses dan menyebarkan pesan. | `socket.emit("kirimPesan", pesan, (error) => { console.log("Pesan berhasil dikirim"); })` |
+Tabel ini membedah perbedaan peran metode `socket.on` pada infrastruktur sisi server dan antarmuka klien:
 
-**Rangkaian Proses:**
-
-1. Client bergabung ke room, server mengirim pesan sambutan, client menampilkan objek di console.
-2. Client mengirim pesan melalui `socket.emit`, server memprosesnya, callback dieksekusi (muncul log konfirmasi).
-3. Server mendistribusikan pesan ke room, setiap client menerima event dan mencetak objek pesan.
-
----
-
-## 3. Penjelasan Library yang Digunakan dalam `chat.html`
-
-Aplikasi ini menggunakan tiga library eksternal untuk fungsi tertentu.
-
-### Mustache
-
-Library templating untuk merender HTML secara dinamis berdasarkan data yang diterima.
-
-- **Kegunaan:** Mengganti variabel template seperti `{{username}}` dan `{{message}}` dengan data aktual.
-- **Contoh Implementasi:**
-```javascript
-  Mustache.render(messageTemplate, {
-    username: message.username,
-    message: message.text,
-    createdAt: moment(message.createdAt).format("H:mm"),
-  });
-```
-
-### Moment
-
-Library untuk manipulasi dan formatting waktu.
-
-- **Kegunaan:** Mengubah timestamp pesan menjadi format yang mudah dibaca (jam:menit).
-- **Contoh:** `moment(message.createdAt).format("H:mm")`.
-
-### Qs
-
-Library untuk parsing query string dari URL.
-
-- **Kegunaan:** Mengekstrak parameter `username` dan `room` dari URL (contoh: `/chat.html?username=xxx&room=yyy`) saat client bergabung.
-- **Contoh:** `const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true });`.
+| Parameter | Sisi Server (`src/index.js`) | Sisi Klien (`public/js/chat.js`) |
+| --- | --- | --- |
+| **Platform** | Ekosistem Node.js | Lingkungan Browser |
+| **Fungsi Utama** | Orkestrasi *event*, manajemen sesi pengguna, dan distribusi data | Resepsi *event* dari server dan pembaruan UI |
+| **Event Utama** | `join`, `kirimPesan`, `kirimLokasi`, `disconnect` | `pesan`, `locationMessage`, `roomData` |
+| **Tanggung Jawab** | Eksekusi logika bisnis dan validasi input | Transformasi data menjadi representasi visual |
+| **Operasi Teknis** | *Broadcasting*, pembaruan status *room*, dan manajemen user | Manipulasi DOM, rendering template, dan *auto-scrolling* |
+| **Output** | Transmisi *event* ke seluruh klien di *room* terkait | Modifikasi tampilan pesan dan koordinat lokasi |
 
 ---
 
-## 4. Struktur Elements, Templates, dan Options dalam `chat.js`
+#### 2. Investigasi Alur Data melalui Console Browser
 
-Bagian ini menjelaskan komponen-komponen penting yang diinisialisasi dalam script client.
+Berdasarkan pengamatan pada konsol pengembang, berikut adalah kronologi transmisi data:
 
-| Komponen      | Deskripsi                                                                  | Relasi File                                          |
-| :------------ | :------------------------------------------------------------------------- | :--------------------------------------------------- |
-| **Elements**  | Referensi ke elemen DOM (form, input, button) untuk manipulasi JavaScript. | `chat.html`                                          |
-| **Templates** | Mengambil template Mustache dari tag script untuk rendering dinamis.       | `chat.html`                                          |
-| **Options**   | Parsing data `username` dan `room` dari query string URL.                  | `index.html` (input awal) & `chat.html` (penggunaan) |
+* **Pesan Sambutan Admin:** Klien menangkap objek pesan otomatis dari server saat berhasil terhubung.
+* **Interaksi Pengguna:** Ketika pengguna mengirim teks, server mendistribusikan objek tersebut ke seluruh anggota *room* untuk dicetak di konsol masing-masing.
+* **Konfirmasi Pengiriman:** Muncul log "Pesan berhasil dikirim" sebagai hasil dari fungsi *callback* setelah server selesai memproses emisi data.
 
 ---
 
-## 5. Fungsi Modul `messages.js` dan `users.js`
+#### 3. Fungsi Pustaka Eksternal pada `chat.html`
 
-Kedua file ini merupakan utility module yang mendukung operasi server.
+Aplikasi ini mengintegrasikan tiga library utama untuk mengoptimalkan fungsionalitas:
 
-| Modul           | Deskripsi Fungsi                                                          | Alur Penggunaan                                                                             |
-| :-------------- | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------ |
-| **messages.js** | Membuat objek pesan standar yang berisi username, text, dan timestamp.    | `index.js` (generate pesan) -> `chat.js` (receive) -> `chat.html` (display).                |
-| **users.js**    | Mengelola data pengguna: menambah, mengambil, mendapatkan list, menghapus. | `index.js` (manage user) -> `chat.js` (receive update) -> `chat.html` (tampil di sidebar). |
-
----
-
-## 6. Mekanisme Fitur Pengiriman Lokasi
-
-Fitur ini memungkinkan pengguna membagikan koordinat geografis mereka ke room chat.
-
-**Tahapan Proses:**
-
-1. **Browser:** Mengakses Geolocation API untuk mendapatkan koordinat (`navigator.geolocation.getCurrentPosition`).
-2. **Client:** Mengirim koordinat ke server via event (`socket.emit("kirimLokasi", coords)`).
-3. **Server:** Menerima koordinat, membuat URL Google Maps, lalu broadcasting (`io.to(room).emit("LocationMessage")`).
-4. **Client Penerima:** Menangkap event dan merender link lokasi menggunakan template (`socket.on("LocationMessage")`).
+* **Mustache:** Bertugas sebagai mesin *templating* untuk merender elemen HTML secara dinamis menggunakan variabel seperti `{{username}}`.
+* **Moment:** Digunakan untuk memproses stempel waktu (*timestamp*) mentah menjadi format waktu yang informatif (misal: jam:menit).
+* **Qs:** Berfungsi membedah (*parsing*) parameter dari *query string* di URL untuk mengidentifikasi identitas pengguna dan ruangan yang dimasuki.
 
 ---
 
-## 7. Perbandingan Perintah Eksekusi: `npm run start` vs `npm run dev`
+#### 4. Struktur Komponen pada `chat.js`
 
-Kedua perintah ini memiliki karakteristik berbeda untuk menjalankan aplikasi.
-
-### `npm run start`
-
-- **Eksekusi:** `node src/index.js`.
-- **Karakteristik:** Menjalankan server tanpa monitoring perubahan file. Perlu restart manual jika ada perubahan kode.
-- **Penggunaan:** Environment produksi atau testing final.
-
-### `npm run dev`
-
-- **Eksekusi:** `nodemon src/index.js`.
-- **Karakteristik:** Menggunakan **nodemon** yang otomatis me-restart server setiap kali mendeteksi perubahan file.
-- **Penggunaan:** Environment development untuk mempercepat proses coding dan testing.
+* **Elements:** Variabel yang menyimpan referensi ke elemen DOM (seperti tombol dan input) untuk mempermudah manipulasi skrip.
+* **Templates:** Skrip yang mengambil struktur HTML dari file `chat.html` untuk digunakan oleh Mustache.
+* **Options:** Objek hasil parsing URL yang mendefinisikan atribut `username` dan `room`.
 
 ---
 
-## 8. Metode Socket Lainnya dalam Aplikasi
+#### 5. Modul Utilitas: `messages.js` & `users.js`
 
-Selain `socket.on`, aplikasi menggunakan beberapa metode socket penting lainnya.
-
-| Metode Socket             | Lokasi Penggunaan | Fungsi                                                                  |
-| :------------------------ | :---------------- | :---------------------------------------------------------------------- |
-| `socket.emit()`           | Client & Server   | Mengirim event ke pihak lawan (client ke server atau sebaliknya).       |
-| `socket.broadcast.emit()` | Server            | Mengirim event ke semua client selain pengirim.                         |
-| `socket.join()`           | Server            | Menambahkan socket pengguna ke dalam room spesifik.                     |
-| `io.to().emit()`          | Server            | Broadcasting event khusus ke semua anggota dalam room tertentu.         |
-| `socket.on("disconnect")` | Server            | Menangani event saat pengguna terputus dari server (menutup browser).   |
+* **`messages.js`:** Berperan dalam standarisasi objek pesan (nama pengguna, teks, dan waktu) sebelum dikirimkan.
+* **`users.js`:** Mengelola status keberadaan pengguna, mulai dari pendaftaran, pencarian data, hingga penghapusan saat pengguna keluar dari sistem.
 
 ---
 
-## 9. Implementasi Konsep Real-time Bidirectional Event-based Communication
+#### 6. Mekanisme Berbagi Lokasi
 
-Penjelasan tentang konsep komunikasi dua arah yang diimplementasikan dalam aplikasi chat ini.
+Fitur ini beroperasi melalui alur berikut: browser mengakses **Geolocation API**, klien mengirimkan koordinat ke server via `socket.emit`, server mengubahnya menjadi tautan Google Maps dan melakukan **broadcast** ke ruangan, lalu klien penerima merender tautan tersebut melalui template khusus.
 
-- **Komunikasi Dua Arah:** Client dan server dapat saling bertukar data secara langsung tanpa memerlukan refresh halaman (berbeda dengan HTTP request konvensional).
-- **Berbasis Event:** Komunikasi terjadi berdasarkan event spesifik seperti `join`, `pesan`, atau `kirimLokasi`.
+---
 
-**Penerapan dalam Kode:**
+#### 7. Perbandingan Eksekusi: `npm run start` vs `npm run dev`
 
-1. **Client Mengirim Data:**
-   - `socket.emit("kirimPesan", ...)`
-   - `socket.emit("join", ...)`
-   
-2. **Server Memproses dan Merespons:**
-   - `socket.on("kirimPesan", ...)`
-   - `io.to(user.room).emit("pesan", ...)`
-   
-3. **Client Menerima dan Memperbarui UI:**
-   - `socket.on("pesan", ...)`
-   - `socket.on("roomData", ...)`
+* **`npm run start`:** Menjalankan aplikasi secara statis melalui perintah `node`. Cocok untuk fase rilis karena lebih hemat sumber daya.
+* **`npm run dev`:** Menjalankan aplikasi melalui **nodemon**, yang secara otomatis memuat ulang server setiap kali ada perubahan kode. Sangat efektif untuk fase pengembangan.
 
-Konsep ini memungkinkan pengalaman chat yang responsif dan real-time tanpa delay.
+---
+
+#### 8. Metode Operasional Socket.IO
+
+Beberapa metode kunci yang diimplementasikan meliputi `socket.emit` (pengiriman data), `socket.broadcast.emit` (distribusi ke semua klien kecuali pengirim), `socket.join` (pengelompokan ruangan), dan `io.to().emit` (siaran spesifik ke satu ruangan).
+
+---
+
+#### 9. Konsep Komunikasi Real-time & Event-based
+
+Aplikasi ini membuktikan bahwa komunikasi modern tidak lagi bersifat satu arah. Dengan pendekatan **berbasis peristiwa**, server tidak hanya menunggu tetapi dapat secara aktif mengirimkan informasi ke klien secara instan. Hal ini menciptakan pengalaman pengguna yang responsif melalui sinergi antara emisi data di sisi klien dan resepsi serta distribusi data di sisi server.
+

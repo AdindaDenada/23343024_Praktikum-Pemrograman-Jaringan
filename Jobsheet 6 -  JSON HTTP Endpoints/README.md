@@ -1,45 +1,35 @@
-# Jobsheet 6 – JSON HTTP Endpoints
+# Jobsheet 6 – Implementasi JSON HTTP Endpoints & Integrasi API
 
-Dari jobsheet ini, saya memperoleh pengalaman langsung dalam **membangun dan mengelola JSON HTTP Endpoints menggunakan Express.js**. Materi yang dipelajari mencakup cara membuat endpoint dinamis untuk mengirim dan menerima data dalam format **JSON**, penerapan konsep **query string (req.query)**, serta integrasi API eksternal (Mapbox dan Weatherstack) untuk menampilkan data cuaca secara real-time.
+Melalui praktikum ini, saya telah mendalami teknik **pembangunan dan pengelolaan JSON HTTP Endpoints menggunakan Express.js**. Fokus utama pembelajaran ini meliputi pembuatan *endpoint* dinamis untuk pertukaran data berformat **JSON**, pemrosesan parameter melalui **query string (`req.query`)**, serta orkestrasi API eksternal (Mapbox dan Weatherstack) untuk menyajikan data cuaca secara *real-time*.
 
-## Bagian Latihan
+## Tahapan Latihan & Implementasi
 
-Saya secara bertahap:
+Secara sistematis, saya telah menyelesaikan rangkaian instruksi berikut:
 
-1. **Mempelajari konsep JSON HTTP Endpoints**, yaitu URL pada aplikasi web yang mengirim dan menerima data dalam format JSON melalui protokol HTTP.  
+1. **Eksplorasi JSON HTTP Endpoints** — Memahami peran URL sebagai titik akses (*endpoint*) yang memfasilitasi pengiriman dan penerimaan data dalam format JSON melalui protokol HTTP.
+2. **Ekstraksi Parameter URL (`req.query`)** — Mengimplementasikan pengambilan data dinamis dari URL (contoh: `?address=padang`) pada sisi Express.js untuk menghasilkan respons yang personal.
+3. **Pengembangan Endpoint `/infoCuaca**` — Membangun logika *backend* yang mampu memberikan respons kondisional berdasarkan keberadaan atau validitas parameter alamat yang dikirimkan pengguna.
+4. **Konektivitas API Eksternal** — Memanfaatkan modul `postman-request` sebagai *HTTP client* untuk menghubungkan server Node.js dengan layanan penyedia data pihak ketiga.
+5. **Modularisasi Logika (Utilitas)** — Memisahkan fungsi-fungsi spesifik ke dalam modul terpisah guna menjaga keteraturan kode:
+* `geocode.js`: Berinteraksi dengan **Mapbox API** untuk mentransformasi lokasi menjadi koordinat geografis.
+* `prediksiCuaca.js`: Mengakses **Weatherstack API** untuk mengekstraksi informasi detail cuaca (suhu, visibilitas, indeks UV).
 
-2. **Menggunakan `req.query` pada Express.js** untuk mengambil parameter dari URL seperti `?address=padang`, dan mengembalikan respons JSON secara dinamis.  
 
-3. **Membuat endpoint `/infoCuaca`** yang memberikan respons berbeda tergantung pada ada/tidaknya parameter alamat (`address`).  
+6. **Sinergi Modul pada `app.js**` — Mengintegrasikan seluruh modul utilitas agar aplikasi dapat menyajikan *payload* JSON yang komprehensif, mencakup narasi prediksi cuaca, nama lokasi resmi, dan input alamat asal.
+7. **Integrasi Frontend dengan Fetch API** — Mengimplementasikan komunikasi asinkron pada file `index.hbs`. Dengan fitur ini, pengguna dapat melakukan pencarian tanpa perlu memuat ulang halaman (*refresh*).
+8. **Estetika Antarmuka (CSS)** — Melakukan kustomisasi tampilan pada formulir input dan tombol pencarian, serta memastikan pesan status ditampilkan secara interaktif dan informatif.
+9. **Validasi Input Sisi Klien** — Menerapkan logika pengecekan untuk memastikan pengguna tidak mengirimkan permintaan kosong, dengan memberikan peringatan: *"Kamu harus memasukkan lokasi yang ingin dicari"*.
+10. **Optimalisasi Halaman Penunjang** — Melakukan pembaruan pada halaman *Help* dan *About* agar lebih relevan dan selaras dengan fungsi utama aplikasi.
 
-4. **Menerapkan modul `postman-request`** untuk menghubungkan aplikasi Node.js dengan API eksternal.  
+---
 
-5. **Membuat dua modul utilitas**:
-   - `geocode.js` → mengakses **Mapbox API** untuk mendapatkan koordinat (`latitude`, `longitude`, dan `location`).
-   - `prediksiCuaca.js` → mengakses **Weatherstack API** untuk menampilkan deskripsi cuaca, suhu, visibilitas, dan indeks UV.  
+## Kesimpulan
 
-6. **Menggabungkan kedua modul tersebut** di dalam `app.js`, sehingga hasil pencarian lokasi dapat ditampilkan dalam format JSON dinamis, berisi:
-   ```json
-   {
-     "prediksiCuaca": "Cuaca cerah dengan suhu 30 derajat",
-     "lokasi": "Padang, Indonesia",
-     "address": "padang"
-   }
+Praktikum ini memberikan pemahaman krusial bahwa **JSON HTTP Endpoints** adalah tulang punggung aplikasi web modern berbasis API. Saya telah berhasil menguasai alur kerja *full-stack* yang mencakup:
 
-7. **Mengintegrasikan Frontend menggunakan Fetch API** dengan menambahkan form pencarian di index.hbs agar pengguna dapat memasukkan lokasi dan melihat hasil cuaca tanpa perlu refresh halaman.
+* Pemrosesan input pengguna melalui `req.query`.
+* Interkoneksi *backend* dengan layanan API luar.
+* Penyajian data dinamis ke *frontend* menggunakan **Fetch API**.
+* Validasi data dan peningkatan pengalaman pengguna melalui desain UI yang responsif.
 
-8. **Menambahkan gaya tampilan (CSS)** untuk memperindah form input dan tombol pencarian, serta menampilkan pesan hasil pencarian secara interaktif.
-
-9. **Melakukan validasi input** pengguna sehingga ketika kolom pencarian kosong, akan muncul pesan:
-   ```js
-   Kamu harus memasukkan lokasi yang ingin dicari
-
-10. **Menyesuaikan tampilan halaman bantuan dan tentang**, menjadikannya lebih informatif dan interaktif sesuai dengan tujuan masing-masing halaman.
-
-# Kesimpulan
-
-Dari jobsheet ini, saya memahami bahwa JSON HTTP Endpoints merupakan komponen penting dalam membangun aplikasi web modern berbasis API.
-Saya belajar bagaimana membuat endpoint dinamis di Express.js, menggunakan req.query untuk membaca input dari pengguna, serta menghubungkan Node.js dengan layanan API eksternal seperti Mapbox dan Weatherstack.
-Selain itu, saya juga berhasil mengintegrasikan frontend dan backend menggunakan Fetch API, menambahkan validasi input, serta mempercantik tampilan menggunakan CSS.
-
-Dengan latihan ini, saya berhasil membangun aplikasi web interaktif yang menampilkan kondisi cuaca berdasarkan lokasi pengguna dalam format JSON, sekaligus memahami alur kerja antara frontend, backend, dan API secara menyeluruh.
+Hasil akhirnya adalah sebuah aplikasi pencarian cuaca yang fungsional, interaktif, dan memiliki struktur kode yang modular serta profesional.

@@ -1,27 +1,19 @@
-# Jobsheet 3 – HTTP Request and API
+# Jobsheet 3 – Integrasi HTTP Request & API
 
-Dari jobsheet ini, saya memperoleh pengalaman langsung dalam memahami cara kerja **HTTP Request** serta penerapan **API (Application Programming Interface)** untuk menghubungkan aplikasi dengan layanan eksternal. Materi yang dipelajari mencakup pengiriman permintaan (request) dan penerimaan respons (response) melalui protokol HTTP, serta cara mengonsumsi data dari API menggunakan Node.js.
+Melalui modul praktikum ini, saya telah mendalami mekanisme **HTTP Request** serta implementasi **API (Application Programming Interface)** sebagai jembatan komunikasi antara aplikasi dan layanan pihak ketiga. Fokus utama pembelajaran ini adalah memahami siklus permintaan (*request*) dan jawaban (*response*) dalam protokol HTTP, serta teknik konsumsi data eksternal menggunakan ekosistem Node.js.
 
-## Bagian Latihan
+## Rincian Aktivitas Latihan
 
-Saya secara bertahap:
+Secara bertahap, saya telah menyelesaikan tahapan berikut:
 
-1. **Mempelajari konsep HTTP Request**, termasuk metode `GET`, `POST`, `PUT`, dan `DELETE`, serta struktur *request* dan *response*.  
-
-2. **Mengenal API dan cara kerjanya** melalui model *request–response*, format data **JSON**, serta konsep autentikasi dengan *access key*.  
-
-3. **Menggunakan Weatherstack API** untuk memperoleh data cuaca terkini berdasarkan koordinat *latitude* dan *longitude*.  
-
-4. **Menerapkan Mapbox API** untuk melakukan *forward geocoding*, yaitu mengonversi nama lokasi menjadi koordinat geografis.  
-
-5. **Menerapkan modul `postman-request`** di Node.js untuk mengirim permintaan HTTP dan membaca data hasil respons.  
-
-6. **Menampilkan hasil data API** seperti suhu, deskripsi cuaca, dan kemungkinan hujan dalam format teks yang mudah dibaca di terminal.  
-
-7. **Menggabungkan dua API (Mapbox dan Weatherstack)** agar aplikasi dapat menampilkan informasi lokasi sekaligus kondisi cuaca secara dinamis.  
+1. **Pendalaman Protokol HTTP:** Mempelajari ragam metode komunikasi seperti `GET`, `POST`, `PUT`, dan `DELETE`, serta membedah struktur anatomi *header* dan *body* pada pesan HTTP.
+2. **Eksplorasi Arsitektur API:** Memahami pola interaksi *request-response*, pengolahan struktur data **JSON**, serta prosedur keamanan menggunakan kunci akses (*API/Access Key*).
+3. **Pemanfaatan Weatherstack API:** Mengintegrasikan layanan cuaca untuk mengekstraksi data meteorologi terkini berdasarkan koordinat geografis (*latitude* dan *longitude*).
+4. **Implementasi Geocoding dengan Mapbox API:** Menerapkan fitur *forward geocoding* guna mentransformasi nama lokasi atau alamat menjadi data koordinat yang presisi.
+5. **Otomasi dengan Library `postman-request`:** Menggunakan modul Node.js ini untuk memicu permintaan HTTP secara programatik dan menangkap *payload* data hasil respons server.
+6. **Formatting Output Terminal:** Menyajikan data mentah dari API (seperti temperatur, deskripsi cuaca, dan peluang presipitasi) menjadi informasi yang mudah dipahami melalui konsol terminal.
+7. **Integrasi Multi-API (Chaining):** Menggabungkan layanan Mapbox dan Weatherstack dalam satu alur logika aplikasi agar sistem dapat menyajikan data cuaca yang relevan berdasarkan input lokasi pengguna.
 
 ## Kesimpulan
 
-Dari jobsheet ini, saya memahami bahwa komunikasi antara **klien dan server** dalam Node.js dapat dilakukan dengan mudah melalui **HTTP Request** dan **API**.  
-Saya juga belajar bagaimana memproses data **JSON**, mengelola *access key*, dan menampilkan hasil respons ke terminal.  
-Dengan latihan ini, saya berhasil membuat aplikasi sederhana yang menampilkan **informasi cuaca berdasarkan lokasi pengguna** secara otomatis.
+Praktikum ini memberikan pemahaman komprehensif mengenai efisiensi komunikasi **client-server** pada Node.js melalui **HTTP Request**. Saya telah berhasil menguasai teknik pemrosesan data **JSON**, manajemen autentikasi API, dan penyajian data dinamis. Hasil akhir dari latihan ini adalah sebuah aplikasi fungsional yang mampu melakukan automasi pencarian **informasi cuaca berdasarkan lokasi** secara *real-time*.

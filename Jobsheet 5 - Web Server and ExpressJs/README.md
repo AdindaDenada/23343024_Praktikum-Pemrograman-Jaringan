@@ -1,29 +1,22 @@
-# Jobsheet 5 – Web Server and Express.js
+# Jobsheet 5 – Arsitektur Web Server & Express.js
 
-Dari jobsheet ini, saya memperoleh pengalaman langsung dalam **membangun web server menggunakan Node.js dan Express.js**. Materi yang dipelajari mencakup konsep dasar web server, penggunaan framework **Express.js**, serta penerapan sistem **templating dengan Handlebars (hbs)** untuk membuat tampilan dinamis pada aplikasi web.
+Melalui praktikum ini, saya telah berhasil melakukan **implementasi server web menggunakan Node.js dan framework Express.js**. Materi ini memberikan pemahaman mendalam mengenai struktur dasar server, pemanfaatan framework minimalis Express untuk efisiensi pengembangan, serta penerapan **templating engine Handlebars (hbs)** guna menyajikan konten dinamis secara terstruktur.
 
-## Bagian Latihan
+## Eksplorasi & Implementasi Praktis
 
-Saya secara bertahap:
+Berikut adalah ringkasan tahapan pengembangan yang telah diselesaikan secara sistematis:
 
-1. **Mempelajari konsep Web Server** — memahami perbedaan antara server statis dan dinamis, serta bagaimana komunikasi antara browser dan server terjadi melalui protokol HTTP.  
+1. **Fundamen Web Server** — Menganalisis mekanisme kerja server statis dibandingkan server dinamis, serta mendalami siklus interaksi antara peramban (browser) dan server melalui protokol HTTP.
+2. **Routing dengan Express.js** — Menginisialisasi framework Express untuk mengelola berbagai rute aplikasi (seperti halaman utama, bantuan, dan tentang kami) menggunakan fungsi `app.get()`.
+3. **Diversifikasi Respon (HTML & JSON)** — Mengintegrasikan pengiriman file HTML untuk kebutuhan antarmuka pengguna dan format data JSON untuk kebutuhan pertukaran data backend.
+4. **Manajemen Aset Statis** — Mengonfigurasi direktori publik untuk file `CSS`, `JavaScript client-side`, serta aset visual menggunakan modul `path` dan middleware `express.static()`.
+5. **Dinamisme dengan Handlebars (hbs)** — Mengadopsi sistem *templating* untuk menyuntikkan variabel dari sisi backend ke dalam tampilan antarmuka secara fleksibel.
+6. **Optimalisasi Struktur melalui Partials** — Membangun komponen *header* dan *footer* yang dapat digunakan kembali (*reusable*) guna menjaga konsistensi desain dan mempermudah pemeliharaan kode.
+7. **Visualisasi & Estetika** — Meningkatkan kualitas visual aplikasi dengan mengintegrasikan file `styles.css` dan aset ikon cuaca melalui sistem *layouting* yang rapi.
+8. **Penanganan Error (Wildcard Route)** — Mengimplementasikan rute khusus menggunakan simbol wildcard untuk menangkap permintaan URL yang tidak valid dan menyajikan halaman kesalahan 404 secara dinamis.
 
-2. **Menginstal dan menggunakan Express.js** — memanfaatkan framework ini untuk membuat rute (route) sederhana seperti halaman utama, bantuan, info cuaca, dan tentang menggunakan metode `app.get()`.  
-
-3. **Menerapkan integrasi HTML dan JSON** — menampilkan halaman web dalam format HTML dan data dinamis dalam format JSON untuk memperkenalkan konsep response yang berbeda.  
-
-4. **Mengakses static assets** — mengatur file statis seperti `HTML`, `CSS`, `JS`, dan `gambar` dengan modul `path` serta `express.static()`.  
-
-5. **Menggunakan Handlebars.js (hbs)** — menerapkan *template engine* untuk menghasilkan tampilan web dinamis yang dapat menampilkan variabel dari backend.  
-
-6. **Membuat partials (header dan footer)** — agar kode HTML dapat digunakan ulang dan memudahkan pengelolaan struktur tampilan.  
-
-7. **Menambahkan style dan ikon web** — mempercantik tampilan dengan file `styles.css`, gambar ikon cuaca (`cuaca.png`), dan mengatur layout melalui sistem *templating*.  
-
-8. **Menerapkan wildcard route (404 page)** — membuat halaman kesalahan dinamis untuk menangani URL yang tidak ditemukan.  
+---
 
 ## Kesimpulan
 
-Dari jobsheet ini, saya memahami cara kerja **web server** dan bagaimana **Express.js** mempermudah pembuatan serta pengelolaan rute, tampilan, dan konten web dinamis.  
-Saya juga belajar bagaimana menerapkan **templating engine Handlebars (hbs)** untuk membuat antarmuka yang fleksibel dan terstruktur dengan konsep **views** dan **partials**.  
-Dengan latihan ini, saya berhasil membangun aplikasi **Web Server sederhana dengan Node.js dan Express.js** yang mampu menampilkan halaman HTML, data JSON, serta menangani halaman kesalahan (404) secara profesional.
+Praktikum Jobsheet 5 memberikan wawasan komprehensif mengenai **tata kelola server web modern**. Penggunaan **Express.js** terbukti mempermudah manajemen rute dan aset, sementara **Handlebars** memberikan fleksibilitas tinggi dalam pembuatan halaman yang responsif terhadap data backend. Hasil akhir dari kegiatan ini adalah sebuah aplikasi server web fungsional yang mampu menangani aset statis, menyajikan konten dinamis, serta memiliki sistem penanganan kesalahan yang profesional.

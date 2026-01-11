@@ -1,21 +1,18 @@
-# Jobsheet Node.js
+# Laporan Praktikum: Fundamental Node.js & Sistem Modul
 
-Dari jobsheet ini, saya memperoleh pengalaman langsung dalam memahami dan menerapkan sistem modul pada Node.js. Materi yang dipelajari mencakup penggunaan `require()` dan `module.exports` untuk modularisasi kode, pemanfaatan modul bawaan seperti `fs`, serta manajemen dependensi melalui Node Package Manager (**NPM**). Selain itu, saya juga berlatih menggunakan command line arguments dengan `process.argv` dan argument parsing melalui package **yargs**.
+Melalui rangkaian materi ini, saya telah mendalami implementasi sistem modularitas pada ekosistem Node.js. Fokus pembelajaran mencakup teknik enkapsulasi kode menggunakan `module.exports` dan pemanggilannya melalui `require()`, pemanfaatan modul internal seperti **File System (`fs`)**, serta manajemen pustaka pihak ketiga menggunakan **NPM (Node Package Manager)**. Selain itu, saya juga mempelajari penanganan input dinamis melalui *command line arguments* menggunakan `process.argv` dan library **yargs**.
 
-## Bagian Latihan
+## Rincian Implementasi Latihan
 
-Saya secara bertahap:
+Secara sistematis, berikut adalah tahapan pengembangan yang telah diselesaikan:
 
-1. Membuat dan mengelola file catatan dengan modul **fs**, termasuk menulis dan menambahkan data baru.  
+1. **Manipulasi File Data:** Menggunakan modul **fs** untuk melakukan operasi dasar pada file, seperti membuat dokumen baru dan menambahkan informasi secara persisten.
+2. **Modularisasi Kode Mandiri:** Membangun modul khusus (`catatan.js`) untuk memisahkan logika aplikasi, kemudian mengintegrasikannya ke skrip utama guna menciptakan struktur kode yang lebih bersih.
+3. **Manajemen Ekosistem NPM:** Melakukan inisialisasi proyek melalui `npm init` serta mengelola dependensi eksternal, di antaranya:
+* **validator:** Untuk memastikan integritas data input.
+* **chalk:** Untuk meningkatkan *user experience* melalui pewarnaan teks di terminal.
+* **nodemon:** Untuk efisiensi pengembangan dengan fitur *auto-reload* aplikasi.
 
-2. Membangun modul sendiri (`catatan.js`) dan mengintegrasikannya ke dalam aplikasi menggunakan `require()`.  
 
-3. Menginisialisasi proyek Node.js dengan `npm init` serta menginstal dan menggunakan package eksternal seperti:  
-   - **validator** → untuk validasi data  
-   - **chalk** → untuk menampilkan teks berwarna di terminal  
-   - **nodemon** → untuk menjalankan aplikasi dengan auto-reload  
-
-4. Menerapkan command line arguments, baik dengan `process.argv` maupun **yargs**, untuk membuat aplikasi lebih interaktif.  
-
-5. Mengembangkan aplikasi catatan sederhana dengan fitur **CRUD (Create, Read, Update, Delete)**, sehingga catatan dapat ditambahkan, dihapus, ditampilkan, dan dibaca secara dinamis melalui terminal.  
-
+4. **Interaktivitas Baris Perintah (CLI):** Mengimplementasikan parser argumen baik secara manual (`process.argv`) maupun menggunakan package **yargs** agar aplikasi dapat menerima perintah langsung dari terminal.
+5. **Pengembangan Aplikasi CRUD:** Berhasil membangun aplikasi manajemen catatan berbasis terminal yang mendukung fungsi **Create, Read, Update, dan Delete**. Aplikasi ini memungkinkan pengguna untuk menambah, membaca, melihat daftar, serta menghapus data secara dinamis.
