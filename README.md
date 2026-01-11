@@ -31,7 +31,7 @@ Semester: 5
 
 | No | Jobsheet | Deskripsi Singkat |
 |----|-----------|-------------------|
-| 1️ | [**Jobsheet 1 – Pengantar NodeJS**](./Jobsheet%201%20-%20Pengantar%20NodeJS) | Mengenal dasar-dasar Node.js dan cara menjalankan JavaScript di lingkungan server. |
+| 1️ | [**Jobsheet 1 – Pengantar NodeJS**](./Jobsheet%201%20-%20Pengantar%20NodeJS) | Memahami fundamental Node.js serta mekanisme eksekusi kode JavaScript pada infrastruktur sisi server (server-side). |
 | 2️ | [**Jobsheet 2 – Node.js Module System**](./Jobsheet%202%20-%20Node.Js%20Module%20System) | Mempelajari sistem modul (`require`, `module.exports`) dan penggunaan NPM. |
 | 3️ | [**Jobsheet 3 – HTTP Request and API**](./Jobsheet%203%20-%20HTTP%20Request%20and%20API) | Mengakses dan memproses data API eksternal menggunakan `postman-request`. |
 | 4️ | [**Jobsheet 4 – JavaScript Essentials**](./Jobsheet%204%20-%20JavaScript%20Essentials) | Pendalaman sintaks dasar JavaScript yang digunakan di sisi backend Node.js. |
@@ -41,28 +41,3 @@ Semester: 5
 | 8 | [**Jobsheet 8 -  MongoDB and Database Server**](./Jobsheet%208%20-%20%20MongoDB%20and%20Database%20Server) | Implementasi database NoSQL menggunakan MongoDB dan penerapan operasi CRUD pada aplikasi Node.js. |
 | 9 | [**Jobsheet 9 -  Socket Programming**](./Jobsheet%209%20-%20%20Socket%20Programming) | Implementasi komunikasi real-time berbasis WebSocket menggunakan Socket.IO. |
 
-## 🧩 Struktur Direktori
-Pemrograman-Berbasis-Jaringan-NodeJS<br>
-┣ 📁 Jobsheet 1 - Pengantar NodeJS<br>
-┣ 📁 Jobsheet 2 - Node.Js Module System<br>
-┣ 📁 Jobsheet 3 - HTTP Request and API<br>
-┣ 📁 Jobsheet 4 - JavaScript Essentials<br>
-┣ 📁 Jobsheet 5 - Web Server and ExpressJs<br>
-┣ 📁 Jobsheet 6 - JSON HTTP Endpoints<br>
-┣ 📁 Jobsheet 7 - Version Control and App Deployment<br>
-┣ 📁 Jobsheet 8 - MongoDB and Database Server<br>
-┣ 📁 Jobsheet 9 -  Socket Programming<br>
-┗ 📄 README.md
-
----
-
-## Tentang
-
-Repositori ini digunakan untuk dokumentasi hasil praktikum mata kuliah **Pemrograman Berbasis Jaringan** menggunakan **Node.js** dan **Express.js**.  
-Setiap jobsheet disusun secara bertahap agar pemahaman konsep server-side JavaScript dapat berkembang secara sistematis.
-
----
-
-**🧑‍💻 Dibuat oleh:** Adinda Denada 
-**📅 Tahun:** 2025  
-**🏫 Universitas:** Universitas Negeri Padang
